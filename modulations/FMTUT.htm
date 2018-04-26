@@ -1,0 +1,434 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0041)http://www.sfu.ca/sonic-studio/fmtut.html -->
+<HTML><HEAD><TITLE>FMTUT</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><!--This file created 8/5/99 1:24 PM by Claris Home Page version 3.0-->
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR><X-CLARIS-WINDOW 
+RIGHT="797" LEFT="16" BOTTOM="770" TOP="114"><X-CLARIS-TAGVIEW 
+MODE="minimal"></HEAD>
+<BODY background=FMTUT_file/YELLOW_HAZE.jpeg>
+<H1>
+<CENTER><FONT color=#0000af><I>Tutorial for Frequency Modulation Synthesis 
+<HR>
+</I></FONT></CENTER></H1>
+<BLOCKQUOTE><FONT size=+1>Frequency Modulation (or FM) synthesis is a simple 
+  and powerful method for creating and controlling complex spectra, introduced 
+  by John Chowning of Stanford University around 1973. In its simplest form it 
+  involves a sine wave carrier whose instantaneous frequency is varied, i.e. 
+  modulated, according to the waveform (assumed here to be another sine wave) of 
+  the so-called modulator. This model then is often called simple FM or 
+  sine-wave FM. Other forms of FM are extensions of the basic model.</FONT> 
+  <P><FONT size=+1>When the frequency of the modulator (which we'll call M) is 
+  in the subaudio range (1-20 Hz), we can hear siren-like changes in pitch of 
+  the carrier. However, when we raise M to the audio range (above 30 Hz) then we 
+  hear a new timbre composed of frequencies called <B>sidebands</B>. To 
+  determine which sidebands are present, we have to control the ratio between 
+  the carrier frequency (C) and the modulating frequency (M). Instead of dealing 
+  with these frequencies in Hz, we'll refer to this relationship as the <B>C : M 
+  ratio</B>, keeping C and M as integers.</FONT></P>
+  <P><FONT size=+1>You may click on any underlined ratio to hear a sound 
+  example. In each case, the fundamental frequency is 100 Hz, both carrier and 
+  modulator are sine waves, and the modulation index is swept from 0 to 2 with 
+  the carrier envelope at a maximum.</FONT></P>
+  <CENTER><FONT color=#af0000 size=+2><I>Properties of C:M 
+  Ratios</I></FONT></CENTER>
+  <P><FONT size=+1>First, about the properties of ratios, and some conventions 
+  we're using:</FONT></P>
+  <P><FONT size=+1>We will only deal with ratios that are called non-reducible, 
+  that is, those involving integers evenly divisible only by 1, and not by any 
+  other integer. For example, the ratio 2:2 is the same as 1:1 and can be 
+  reduced to it for all practical purposes. Likewise, 10:4 is the same as 5:2, 
+  and 9:6 is the same as 3:2, and so on.</FONT></P>
+  <P><FONT size=+1>Secondly, we're going to divide all possible ratios into some 
+  subgroups for ease of handling. One group will be those described as the 1:N 
+  ratios. This means ratios like </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM1to1.aiff"><FONT 
+  size=+1>1:1</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM1to2.aiff"><FONT 
+  size=+1>1:2</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM1to3.aiff"><FONT 
+  size=+1>1:3</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM1to4.aiff"><FONT 
+  size=+1>1:4</FONT></A><FONT size=+1>, etc. They will be found to have 
+  particular properties.</FONT></P>
+  <P><FONT size=+1>Another group will be those described as N:M where N, M are 
+  less than 10. In thise case, the restriction to single digit numbers is purely 
+  for ease of arithmetic calculation. The last group is called 'large number 
+  ratios', and this involves numbers 10 and up. Again, the division is 
+  arbitrary. We won't deal with ratios like </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM100to1.aiff"><FONT 
+  size=+1>100:1</FONT></A><FONT size=+1> or </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM100to99.aiff"><FONT 
+  size=+1>100:99</FONT></A><FONT size=+1>. Those are legitimate ones and you can 
+  discover their properties through the sound examples. C:M ratios are sometimes 
+  expressed with real numbers, e.g. the ratio 1:1.4, but these can be 
+  approximated by integers, in this case </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM5to7.aiff"><FONT 
+  size=+1>5:7</FONT></A><FONT size=+1>. In FM, a set of sidebands is produced 
+  around the carrier C, <B>equally spaced at a distance equal to the modulating 
+  frequency M.</B> Therefore, we often refer to the sidebands in pairs: 1st, 
+  2nd, 3rd, and so on.</FONT></P>
+  <CENTER><FONT color=#af0000 size=+2><I>Calculating 
+  Sidebands</I></FONT></CENTER>
+  <P><FONT size=+1>The so-called </FONT><FONT color=#000000 size=+1><B>upper 
+  sidebands</B></FONT><FONT size=+1> are those lying above the carrier. Their 
+  frequencies are: </FONT></P>
+  <BLOCKQUOTE><FONT size=+1>C+M, C+2M, C+3M, C+4M, C+5M, .... 
+  </FONT></BLOCKQUOTE>
+  <P><FONT size=+1>For example, if C:M is </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM1to2.aiff"><FONT 
+  size=+1>1:2</FONT></A><FONT size=+1>, that is, the modulator is twice the 
+  frequency of the carrier, then the first upper sideband is: C+M = 1+2 = 3. The 
+  second upper sideband is: C+2M = 1+(2x2) = 1+4 = 5. Another way to get the 
+  second sideband is to add M=2 to the value of the first sideband which is 3; 
+  i.e. (C+M) + M = 3+2 = 5. It quickly becomes clear that the upper sidebands in 
+  this example are all the odd numbers, and since the carrier is 1, the upper 
+  sidebands are all the odd harmonics, with the carrier as the fundamental (i.e. 
+  the lowest frequency in the spectrum).</FONT></P>
+  <P><FONT size=+1>However, if our C:M were </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM2to5.aiff"><FONT 
+  size=+1>2:5</FONT></A><FONT size=+1>, the first upper sideband would be 2+5 = 
+  7. Since 7 is not a multiple of 2, it would be termed inharmonic. But the 
+  second upper sideband would be 7+5 = 12, and that is the 6th harmonic. 
+  Therefore, we can see that sidebands can be harmonic or inharmonic.</FONT></P>
+  <P><FONT size=+1>The </FONT><FONT color=#000000 size=+1><B>lower 
+  sidebands</B></FONT><FONT size=+1> are: C-M, C-2M, C-3M, C-4M, C-5M, 
+  ...</FONT></P>
+  <P><FONT size=+1>When the sideband is a positive number it will lie below the 
+  carrier, but at some point, its value will become negative. It is then said to 
+  be <B>reflected</B> because we simply drop the minus sign and treat it as a 
+  positive number, e.g. the sideband -3 appears in the spectrum as 3. 
+  Acoustically, however, this reflected process involves a phase inversion, i.e. 
+  the spectral component is 180 degrees out of phase. Mathematically, we express 
+  this reflection by using absolute value signs around the expression: /C-M/ to 
+  indicate that we drop the minus and treat the number as positive.</FONT></P>
+  <P><FONT size=+1>For example, for </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM1to2.aiff"><FONT 
+  size=+1>1:2</FONT></A><FONT size=+1>, the 1st lower sideband is: /C-M/ = /1-2/ 
+  = /-1/ =1.</FONT></P>
+  <P><FONT size=+1>The second lower sideband is: /C-2M/ = /1-(2x2)/ = /1-4/ = 
+  /-3/ = 3. However, to make things easier, we could have added 2 to the first 
+  lower sideband (1), which is already reflected, and have obtained 
+3.</FONT></P>
+  <P><FONT size=+1>For the ratio </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM1to1.aiff"><FONT 
+  size=+1>1:1</FONT></A><FONT size=+1>, the 1st lower sideband is 0 (inaudible) 
+  and the 2nd, 3rd and 4th lower sidebands are 1, 2, 3, respectively.</FONT></P>
+  <P><FONT size=+1>For </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM7to5.aiff"><FONT 
+  size=+1>7:5</FONT></A><FONT size=+1>, the lower sidebands are: 2, 3, 8, 13, 
+  ... where 3 is the 1st reflected one. One concern we have in using a given C:M 
+  ratio is whether the carrier frequency is the lowest frequency in the 
+  spectrum, i.e. is it the fundamental? If it is, we can treat the carrier 
+  frequency as the principal pitch that will be heard in the resulting 
+  timbre.</FONT></P>
+  <P><FONT size=+1>First we have the case of the </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM1to1.aiff"><FONT 
+  size=+1>1:1</FONT></A><FONT size=+1> ratio whose upper sidebands are 2, 3, 4, 
+  ... and whose lower sidebands are 0, 1, 2, 3, ... Clearly the carrier is the 
+  lowest non-zero component, and all the sidebands are harmonics, i.e. 
+  multiples. Because 1:1 is the only ratio with a zero lower sideband, it is a 
+  special case. It is also the only ratio producing the entire harmonic series. 
+  For other ratios, we can work out their sidebands and decide if any of them 
+  are lower than the carrier. That is fine, but tedious, and we'd like to know 
+  in advance what to expect. First, we might note that in the </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM1to2.aiff"><FONT 
+  size=+1>1:2</FONT></A><FONT size=+1> case the 1st lower sideband is /-1/ = 1; 
+  therefore it falls against the carrier. Further, if M is larger than twice C, 
+  e.g. </FONT><A href="http://www.sfu.ca/sonic-studio/Sound/FM2to5.aiff"><FONT 
+  size=+1>2:5</FONT></A><FONT size=+1>, then the 1st reflected sideband will 
+  always be greater than the carrier.</FONT></P>
+  <P><FONT size=+1>Work out a few examples and you'll find that the rule 
+  is:</FONT></P>
+  <CENTER><FONT size=+1><B>FOR THE CARRIER TO BE THE FUNDAMENTAL, M MUST BE 
+  GREATER THAN OR EQUAL TO TWICE C, OR ELSE BE THE 1:1 
+RATIO.</B></FONT></CENTER>
+  <P><FONT size=+1>Another useful property to be familiar with is the 
+  occurrence, as you may have noticed already, of lower sidebands coinciding 
+  with the upper set. They are said to 'fall against' them.</FONT></P>
+  <P><FONT size=+1>What this means acoustically is that the amplitudes of the 
+  two sidebands will add together, influenced as well by the phase inversion of 
+  the reflected sideband. Since the amplitude of each sideband varies according 
+  to the strength of the modulation, as expressed by the Modulation Index, the 
+  sum of the contributions of each sideband becomes quite complex!</FONT></P>
+  <P><FONT size=+1>You've probably noticed that the sidebands of the </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM1to1.aiff"><FONT 
+  size=+1>1:1</FONT></A><FONT size=+1> ratio have this property of falling 
+  against each other. You'll find a very similar pattern with all of the N:1 
+  ratios, i.e. </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM2to1.aiff"><FONT 
+  size=+1>2:1</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM3to1.aiff"><FONT 
+  size=+1>3:1</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM4to1.aiff"><FONT 
+  size=+1>4:1</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM5to1.aiff"><FONT 
+  size=+1>5:1</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM6to1.aiff"><FONT 
+  size=+1>6:1</FONT></A><FONT size=+1>, ...</FONT></P>
+  <P><FONT size=+1>The second type of ratio showing the same property is that 
+  like 1:2. The odd harmonics are found in both the upper and lower sidebands. 
+  Therefore we can extrapolate the second case, namely odd N:2, that is, the 
+  ratios </FONT><A href="http://www.sfu.ca/sonic-studio/Sound/FM1to2.aiff"><FONT 
+  size=+1>1:2</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM3to2.aiff"><FONT 
+  size=+1>3:2</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM5to2.aiff"><FONT 
+  size=+1>5:2</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM7to2.aiff"><FONT 
+  size=+1>7:2</FONT></A><FONT size=+1>, ...</FONT></P>
+  <P><FONT size=+1>No other ratios except N:1 and odd N:2 have this property. 
+  All ratios other than N:1 and odd N:2 have an asymmetrical spacing of their 
+  sidebands. That is, the distance in frequency between adjacent sidebands is 
+  unequal. For instance, the ratio </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM2to5.aiff"><FONT 
+  size=+1>2:5</FONT></A><FONT size=+1> with its sidebands 2, 3, 7, 8, 12, .... 
+  However, there is still a pattern to the spacing.</FONT></P>
+  <P><FONT size=+1>We want the distance between the first upper sideband (C + M) 
+  and the first reflected lower sideband (C - M) which is negative by definition 
+  and therefore can be made positive to give the expression (M - C). Subtract 
+  these two frequencies to get: (C + M) - (M - C) = 2C We find that the answer 
+  is 2C. Since the spacing of all upper or lower sidebands is M, then the 
+  remaining spacing is M - 2C.</FONT></P>
+  <P><FONT size=+1>Therefore the rule is:</FONT></P>
+  <CENTER><FONT size=+1><B>WHEN C IS THE LOWEST FREQUENCY IN THE SPECTRUM, THE 
+  SPACING OF SIDEBANDS ABOVE IT (EXCEPT FOR 1:1) WILL BE: M - 2.C &amp; 
+  2.C</B></FONT></CENTER>
+  <P><FONT size=+1>For the above example (</FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM2to5.aiff"><FONT 
+  size=+1>2:5</FONT></A><FONT size=+1>), the spacing is 2x2=4 and 5-4=1. Note 
+  that we have to start with C as the fundamental. This will be referred to in 
+  the next section as the <B>Normal Form</B> of the Ratio.</FONT></P>
+  <CENTER><FONT color=#af0000 size=+2><I>Normal Form of the C:M 
+  Ratio</I></FONT></CENTER>
+  <P><FONT size=+1><B>Definition:</B> <I>a C:M ratio is in Normal Form (NF) when 
+  the carrier is the fundamental in the spectrum it produces.</I></FONT></P>
+  <P><FONT size=+1><B>Rule:</B> <I>for a ratio to be in Normal Form, M must be 
+  greater than or equal to twice C, or else be the ratio 1:1.</I></FONT></P>
+  <P><FONT size=+1>What we are doing with the concept of Normal Form is 
+  providing the basis of a classification scheme for all ratios, and at the same 
+  time codifying our rule of thumb about the conditions for the carrier to be 
+  the fundamental. If we consider only ratios involving integers up to 9, we can 
+  list all those in Normal Form:</FONT></P>
+  <BLOCKQUOTE><A href="http://www.sfu.ca/sonic-studio/Sound/FM1to1.aiff"><FONT 
+    size=+1>1:1</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to2.aiff"><FONT 
+    size=+1>1:2</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM4to9.aiff"><FONT 
+    size=+1>4:9</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM3to7.aiff"><FONT 
+    size=+1>3:7</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM2to5.aiff"><FONT 
+    size=+1>2:5</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM3to8.aiff"><FONT 
+    size=+1>3:8</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to3.aiff"><FONT 
+    size=+1>1:3</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM2to7.aiff"><FONT 
+    size=+1>2:7</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to4.aiff"><FONT 
+    size=+1>1:4</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM2to9.aiff"><FONT 
+    size=+1>2:9</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to5.aiff"><FONT 
+    size=+1>1:5</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to6.aiff"><FONT 
+    size=+1>1:6</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/Fm1to7.aiff"><FONT 
+    size=+1>1:7</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to8.aiff"><FONT 
+    size=+1>1:8</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to9.aiff"><FONT 
+    size=+1>1:9</FONT></A></BLOCKQUOTE>
+  <P><FONT size=+1>These have been listed in an order related to what's called 
+  the <B>Farey Series</B> where the value of M/C is increasing, or C/M is 
+  decreasing. Each NF ratio will have associated with it a family of ratios, as 
+  shown below.</FONT></P>
+  <CENTER><FONT color=#af0000 size=+2><I>Reducing a Non Normal Form Ratio to its 
+  Normal Form </I></FONT></CENTER>
+  <P><FONT size=+1>When the M value in a ratio is less than twice the C value, 
+  it is not in Normal Form, but can be reduced to it by applying the 
+  operation:</FONT></P>
+  <BLOCKQUOTE><FONT size=+1>C = /C - M/</FONT></BLOCKQUOTE>
+  <P><FONT size=+1>What this means is that you subtract M from C (ignoring any 
+  minus sign) and treat the result as the new C value. You keep doing this until 
+  the ratio satisfies the Normal Form criterion.</FONT></P>
+  <P><FONT size=+1>Consider, for example, the ratio 3:1. We first take 3-1=2 and 
+  get the ratio 2:1, which is still not in Normal Form. Another application of 
+  the operation gives us 2-1=1 and the ratio 1:1 which is in Normal Form by 
+  definition.</FONT></P>
+  <P><FONT size=+1>A trickier example is 8:5. First we reduce 8-5=3 and get 3:5 
+  (not NF). Reducing again, we get 3-5=-2, which becomes 2:5 (ignoring the 
+  minus!) and because 5 is greater than twice 2, we have a Normal Form ratio. 
+  Notice that the reduction operation is the reverse of generating 
+  sidebands.</FONT></P>
+  <P><FONT size=+1>To generate sidebands we add M to C; to reduce the ratio, we 
+  subtract.</FONT></P>
+  <CENTER><FONT color=#af0000 size=+2><I>Families of C:M 
+  Ratios</I></FONT></CENTER>
+  <P><FONT size=+1>For each Normal Form ratio there exists a set of ratios which 
+  produce the same set of sidebands. We'll call this set of ratios a 
+  <B>family</B>, and identify the family by its Normal Form ratio.</FONT></P>
+  <P><FONT size=+1>Consider the ratios 2:5, 3:5 and 7:5. Here are their 
+  sidebands:</FONT></P>
+  <BLOCKQUOTE><A href="http://www.sfu.ca/sonic-studio/Sound/FM2to5.aiff"><FONT 
+    size=+1>2:5</FONT></A><FONT size=+1> 2, 3, 7, 8, 12, 13, 17, 18, 22, 23, 27, 
+    28</FONT> 
+    <P><A href="http://www.sfu.ca/sonic-studio/Sound/FM3to5.aiff"><FONT 
+    size=+1>3:5</FONT></A><FONT size=+1> 3, 2, 8, 7, 13, 12, 18, 17, 23, 22, 28, 
+    27</FONT></P>
+    <P><A href="http://www.sfu.ca/sonic-studio/Sound/FM7to5.aiff"><FONT 
+    size=+1>7:5</FONT></A><FONT size=+1> 7, 2, 12, 3, 17, 8, 22, 13, 27, 18, 32, 
+    23</FONT></P></BLOCKQUOTE>
+  <P><FONT size=+1>We can see that all 3 ratios produce the same sidebands but 
+  in a different order. 2:5 is the Normal Form ratio and so this is the 2:5 
+  family. How can we generate the entire set of family members? The rule 
+  is:</FONT></P>
+  <CENTER><FONT size=+1><B>For a C:M ratio in Normal Form, the set of family 
+  members is:</B></FONT></CENTER>
+  <BLOCKQUOTE>
+    <CENTER><FONT size=+1><B>C + N.M : M &amp; /C - N.M/ : M, for N=1, 2, 3, 4, 
+    ...</B></FONT></CENTER></BLOCKQUOTE>
+  <P><FONT size=+1>We simply take each sideband in turn and use it as the C 
+  value of the ratio, keeping M constant. The </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM2to5.aiff"><FONT 
+  size=+1>2:5</FONT></A><FONT size=+1> family is </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM3to5.aiff"><FONT 
+  size=+1>3:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM7to5.aiff"><FONT 
+  size=+1>7:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM8to5.aiff"><FONT 
+  size=+1>8:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM12to5.aiff"><FONT 
+  size=+1>12:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM13to5.aiff"><FONT 
+  size=+1>13:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM17to5.aiff"><FONT 
+  size=+1>17:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM18to5.aiff"><FONT 
+  size=+1>18:5</FONT></A><FONT size=+1>, ...</FONT></P>
+  <CENTER><FONT color=#af0000 size=+2><I>Harmonic &amp; Inharmonic C:M 
+  Ratios</I></FONT></CENTER>
+  <P><FONT size=+1>When we showed how to generate sidebands, we noted that some 
+  were harmonic and some were inharmonic (i.e. not multiples of the 
+  fundamental). Acoustically, this is an important distinction because each 
+  ratio produces a harmonic or inharmonic timbre - a property usable 
+  compositionally.</FONT></P>
+  <P><FONT size=+1>The rule for determining harmonic/inharmonic spectra is easy 
+  for Normal Form Ratios:</FONT></P>
+  <BLOCKQUOTE><FONT size=+1><B>Harmonic NF ratios are always of the form 1:N, 
+    and inharmonic ones aren't.</B></FONT> 
+    <P><FONT size=+1>Harmonic Ratios: </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to1.aiff"><FONT 
+    size=+1>1:1</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to2.aiff"><FONT 
+    size=+1>1:2</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to3.aiff"><FONT 
+    size=+1>1:3</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to4.aiff"><FONT 
+    size=+1>1:4</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to5.aiff"><FONT 
+    size=+1>1:5</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to6.aiff"><FONT 
+    size=+1>1:6</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/Fm1to7.aiff"><FONT 
+    size=+1>1:7</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to8.aiff"><FONT 
+    size=+1>1:8</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM1to9.aiff"><FONT 
+    size=+1>1:9</FONT></A></P>
+    <P><FONT size=+1>Inharmonic Ratios: </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM2to9.aiff"><FONT 
+    size=+1>2:9</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM2to7.aiff"><FONT 
+    size=+1>2:7</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM3to8.aiff"><FONT 
+    size=+1>3:8</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM2to5.aiff"><FONT 
+    size=+1>2:5</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM3to7.aiff"><FONT 
+    size=+1>3:7</FONT></A><FONT size=+1>, </FONT><A 
+    href="http://www.sfu.ca/sonic-studio/Sound/FM4to9.aiff"><FONT 
+    size=+1>4:9</FONT></A></P></BLOCKQUOTE>
+  <P><FONT size=+1>When a ratio is not in Normal Form, and you want to know if 
+  it is harmonic or not, you can reduce it to Normal Form &amp; find out. 
+  However, ratios with M = 1, 2, 3, 4, 6 are always harmonic; for M=5, 7, 8, 9, 
+  check if C is a multiple of M plus or minus 1; if so, it's harmonic. For 
+  instance, 9:5, 11:5, 14:5 and 16:5 are members of the 1:5 family whose C 
+  values are 10-1, 10+1, 15-1, 15+1. On the other hand, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM2to5.aiff"><FONT 
+  size=+1>2:5</FONT></A><FONT size=+1> family members are </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM7to5.aiff"><FONT 
+  size=+1>7:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM8to5.aiff"><FONT 
+  size=+1>8:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM12to5.aiff"><FONT 
+  size=+1>12:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM13to5.aiff"><FONT 
+  size=+1>13:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM17to5.aiff"><FONT 
+  size=+1>17:5</FONT></A><FONT size=+1>, </FONT><A 
+  href="http://www.sfu.ca/sonic-studio/Sound/FM18to5.aiff"><FONT 
+  size=+1>18:5</FONT></A><FONT size=+1> and are inharmonic.</FONT></P>
+  <CENTER><FONT color=#af0000 size=+2><I>Calculating The Fundamental 
+  Frequency</I></FONT></CENTER>
+  <P><FONT size=+1>Once we are thinking along the lines of families of ratios 
+  producing the same set of sidebands, we may want to know how to calculate the 
+  right carrier frequency for a family member ratio that produces the same 
+  spectrum as the Normal Form ratio on a given fundamental-carrier, e.g. 100 Hz 
+  for ease of calculation. In the PODX system this can be done for you 
+  automatically when you ask for the frequencies to be treated as modulators 
+  (note: M is constant for a family). To do the calculation yourself, take a 
+  Normal Form ratio NFC:M with a given carrier frequency. Then for a given 
+  family member ratio C:M, what should its carrier frequency (FC) be to keep the 
+  fundamental the same?</FONT></P>
+  <P><FONT size=+1>The equation is:</FONT></P>
+  <BLOCKQUOTE><FONT size=+1>FC = (C ratio) x (NF Carrier frequency) / (NFC 
+    ratio)</FONT></BLOCKQUOTE>
+  <P><FONT size=+1>For example, if the NF carrier frequency is 100 Hz for 1:1, 
+  then the corresponding carrier for 3:1 is (3x100/1) = 300 Hz. For any 1:N 
+  ratio we can get the answer by taking C x 100. For a NFC:M ratio, we take C x 
+  100 / NFC, e.g. for 7:5 and 2:5, the carrier for 7:5 is 7x100/2 = 350 Hz. 
+  Acoustically we hear a non NF family member on a high carrier as having its 
+  energy distributed around high partials, rather than centred on the 
+  fundamental, at least for a low modulation index.</FONT></P>
+  <P><FONT size=+1>When we use a non Normal Form ratio with a specific carrier 
+  frequency, we often want to know what is its fundamental frequency, or we wish 
+  a specific fundamental and want to know how to calculate the appropriate 
+  carrier. This is done for you in PODX when you request that the frequency be 
+  treated as the fundamental. The program calculates the right carrier to 
+  produce the fundamental that is required.</FONT></P>
+  <P><FONT size=+1>To calculate the fundamental (FF) for a non Normal Form ratio 
+  C:M whose carrier is known, we need to know the Normal Form of the ratio 
+  NFC:M, and then we can use the equation:</FONT></P>
+  <BLOCKQUOTE><FONT size=+1>FF = (Carrier frequency) x (NFC ratio) / (C 
+    ratio)</FONT></BLOCKQUOTE>
+  <P><FONT size=+1>For example, with 5:2 and a carrier of 500 Hz, the Normal 
+  Form ratio is 1:2 and therefore the fundamental is (500 x 1 / 5) = 100 Hz. 
+  Similarly, for 7:5 and a carrier of 700 Hz, the Normal Form ratio is 2:5, and 
+  therefore the fundamental is (700 x 2 / 7) = 200 Hz.</FONT></P>
+  <P><FONT size=+1>If we know the fundamental and need the carrier, we can use 
+  the equation:</FONT></P>
+  <BLOCKQUOTE><FONT size=+1>Carrier = (Fundamental) x (C ratio) / (NFC 
+    ratio)</FONT></BLOCKQUOTE>
+  <P><FONT size=+1>
+  <HR>
+  </FONT>References:
+  <P></P>
+  <P>B. Truax, "Organizational Techniques for C:M Ratios in Frequency 
+  Modulation", <I>Computer Music Journal, </I>1(4), 1978, pp. 39-45; reprinted 
+  in <I>Foundations of Computer Music, </I>C. Roads and J. Strawn (eds.). MIT 
+  Press, 1985.</P>
+  <P>J. Chowning, "The Synthesis of Complex Audio Spectra by Means of Frequency 
+  Modulation," <I>Journal of the Audio Engineering Society</I> 21(7), 1973; 
+  reprinted in <I>Computer Music Journal </I>1(2), 1977.</P>
+  <P>B. Schottstaedt, "The Simulation of Natural Instrument Tones Using 
+  Frequency Modulation with a Complex Modulating Wave," <I>Computer Music 
+  Journal </I>1(4), 1977.</P>
+  <P>J. Bate, "The Effects of Modulator Phase on Timbres in FM Synthesis," 
+  <I>Computer Music Journal </I>14(3), 1990.</P>
+  <P>F. Holm, "Understanding FM Implementations: A Call for Common Standards," 
+  <I>Computer Music Journal </I>16(1), 1992.</P></BLOCKQUOTE>
+<CENTER><A href="http://www.sfu.ca/sonic-studio/index.html"><FONT 
+size=+1><B><I>home</I></B></FONT></A> 
+<P><A href="http://www.sfu.ca/sonic-studio/index.html"><IMG align=bottom 
+height=32 src="FMTUT_file/lrarOup.gif" width=32></A></P></CENTER></BODY></HTML>
