@@ -83,9 +83,9 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1093.0, 78.0, 67.0, 22.0 ],
+					"patching_rect" : [ 1093.0, 78.0, 72.0, 22.0 ],
 					"style" : "",
-					"text" : "r feedback"
+					"text" : "r rand_amp"
 				}
 
 			}
@@ -112,7 +112,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1030.0, 78.0, 41.0, 22.0 ],
 					"style" : "",
-					"text" : "r tau0"
+					"text" : "r amp"
 				}
 
 			}
@@ -233,7 +233,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 521.5, 336.0, 101.0, 183.0 ],
 					"style" : "",
-					"text" : ";\rcenter_freq 220;\rrand_freq 50;\rgrain_len 5;\rrand_len 200;\rgrain_delay 0;\rrand_delay 1;\rharmonicity 1;\rindex 1;\rrand_index 0;\rtau0 0;\rfeedback 0;\rscale 0.1"
+					"text" : ";\rcenter_freq 220;\rrand_freq 50;\rgrain_len 5;\rrand_len 200;\rgrain_delay 0;\rrand_delay 1;\rharmonicity 1;\rindex 1;\rrand_index 0;\ramp 0.5;\rrand_amp 0;\rscale 0.1"
 				}
 
 			}
@@ -470,7 +470,7 @@
 					"numinlets" : 11,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 176.0, 201.0, 919.0, 22.0 ],
+					"patching_rect" : [ 176.0, 202.0, 984.0, 22.0 ],
 					"style" : "",
 					"text" : "poly~ grain_gen 20"
 				}
