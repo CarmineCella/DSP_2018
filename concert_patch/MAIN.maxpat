@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 97.0, 89.0, 1741.0, 1058.0 ],
+		"rect" : [ 108.0, 79.0, 1741.0, 1058.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -46,7 +46,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 1567.0, 861.0, 107.0, 39.0 ],
-					"presentation_rect" : [ 1584.133423, 865.599976, 0.0, 0.0 ],
 					"style" : "",
 					"text" : "MASTER"
 				}
@@ -255,7 +254,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 1246.0, 518.0, 640.0, 480.0 ],
+						"rect" : [ 1006.0, 518.0, 640.0, 480.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -282,7 +281,6 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -1440,7 +1438,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 0,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 329.0, 74.0, 300.0, 369.0 ],
+					"patching_rect" : [ 323.0, 74.0, 300.0, 369.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -1852,11 +1850,11 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-4::obj-6" : [ "Gain", "Gain", 0 ],
-			"obj-1::obj-3" : [ "Gain[2]", "Gain", 0 ],
+			"obj-5::obj-6" : [ "Gain", "Gain", 0 ],
+			"obj-4::obj-6" : [ "Gain[4]", "Gain", 0 ],
 			"obj-8::obj-11" : [ "Gain[3]", "Gain", 0 ],
 			"obj-16::obj-58" : [ "live.gain~", "Gain", 0 ],
-			"obj-5::obj-6" : [ "Gain[1]", "Gain", 0 ]
+			"obj-1::obj-3" : [ "Gain[2]", "Gain", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
